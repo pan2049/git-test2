@@ -1,5 +1,7 @@
 package tw.pan.model;
 
+import java.util.List;
+
 import javax.persistence.EntityManagerFactory;
 
 import org.hibernate.Session;
@@ -40,6 +42,14 @@ public class TestDao {
 			System.out.println("No Answer");
 			return tBean;
 		}
+	}
+	
+	public List<Test> selectAll(){
+		String hqlsql = "from Test";
+		Query<Test> query = getSession().createQuery(hqlsql,Test.class);
+		System.out.println("go1");
+		return query.list();
+		
 	}
 
 }
