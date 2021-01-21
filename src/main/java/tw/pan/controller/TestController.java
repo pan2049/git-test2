@@ -22,7 +22,7 @@ public class TestController {
 	@Autowired
 	private TestService tService;
 	@Autowired
-	ObjectMapper objectMapper ;
+	private ObjectMapper objectMapper ;
 	
 	@GetMapping(value="/goToMain.controller")
 	public String goToMain() {
@@ -34,6 +34,11 @@ public class TestController {
 		return "result";
 	}
 	
+	@GetMapping(value="/goToShopGrid.controller")
+	public String goToShopGrid() {
+		return "shop-grid";
+	}
+	
 	@RequestMapping(value="/selectController",method=RequestMethod.GET)
 	public String selectAction(@RequestParam(name="name") String name,Model m) {
 		Test tBean = tService.select(name);
@@ -42,7 +47,7 @@ public class TestController {
 		return "result";
 	}
 	
-	@RequestMapping(value="/selectAll.controller",method=RequestMethod.POST)
+	@RequestMapping(value="/shopGrid.controller",method=RequestMethod.POST)
 	public @ResponseBody String selectAllAction() throws Exception {
 		List<Test> tList = tService.selectAll();
 		String uJson = objectMapper.writeValueAsString(tList);
