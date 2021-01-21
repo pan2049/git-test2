@@ -8,20 +8,38 @@
 	.div1{
 		border: 2px solid red;
 	}
+	.rDiv{
+		margin: 10px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
 		$("#a1").click(function(event){
 			event.preventDefault();
-			fetch($(this).attr("href"),{})
-				.then ((response) => {
+			$.ajax({
+				url:"selectAll.controller",
+				type:"POST",
+				dataType:"json",
+				contentType:"application/json; charset=utf-8",
+				success:function(response){
 					console.log(response);
-					return response.json();
-				}).then ((jsonData) => {
-					console.log(jsonData);
-				}).catch((err) => {
-					console.log('錯誤:',err);
-				});
+					$.each(response,function(i,v){
+						$(".div1").append(`<div class="rDiv">Id=${v.id} Name=${v.name}</div><br/>`);
+					})
+				},
+				error:function(msg){
+					alert("ajax異常:"+msg);
+				}
+			});
+// 			fetch($(this).attr("href"),{})
+// 				.then ((response) => {
+// 					console.log(response);
+// 					return response;
+// 				}).then ((jsonData) => {
+// 					console.log(jsonData);
+// 				}).catch((err) => {
+// 					console.log('錯誤:',err);
+// 				});
 			
 // 				.then(function(array){
 // 					$.each(array,function(index,value){
@@ -36,8 +54,7 @@
 <body>
 <!-- 	<h1 th:text="${id}"></h1> -->
 <!-- 	<h1 th:text="${name}"></h1> -->
-	<p><a id="a1" href="selectAll.controller" class="a-button">fetch json</a></p>
-	<div class="div1">
-	</div>
+	<p><a id="a1" href="#" class="a-button">fetch json</a></p>
+	<div class="div1"></div>
 </body>
 </html>

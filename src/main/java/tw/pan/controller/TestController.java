@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -41,13 +42,15 @@ public class TestController {
 		return "result";
 	}
 	
-	@RequestMapping(value="/selectAll.controller",method=RequestMethod.GET)
-	public String selectAllAction(Model m) throws Exception {
+	@RequestMapping(value="/selectAll.controller",method=RequestMethod.POST)
+	public @ResponseBody String selectAllAction() throws Exception {
 		List<Test> tList = tService.selectAll();
 		String uJson = objectMapper.writeValueAsString(tList);
 		System.out.println(uJson);
-		m.addAttribute(uJson);
-		return "result";
+		//m.addAttribute(uJson);
+		//return "result";
+		String response = uJson;
+		return response;
 	}
 	
 	
