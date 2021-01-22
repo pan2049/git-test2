@@ -16,30 +16,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import tw.pan.model.Test;
 import tw.pan.model.TestService;
 
-@Controller
+//@Controller
 public class TestController {
 
-	@Autowired
+	//@Autowired
 	private TestService tService;
-	@Autowired
+	//@Autowired
 	private ObjectMapper objectMapper ;
 	
-	@GetMapping(value="/goToMain.controller")
+	//@GetMapping(value="/goToMain.controller")
 	public String goToMain() {
 		return "index";
 	}
 	
-	@GetMapping(value="/goToIndexTest.controller")
+	//@GetMapping(value="/goToIndexTest.controller")
 	public String goToIndex() {
 		return "result";
 	}
 	
-	@GetMapping(value="/goToShopGrid.controller")
+	//@GetMapping(value="/goToShopGrid.controller")
 	public String goToShopGrid() {
 		return "shop-grid";
 	}
 	
-	@RequestMapping(value="/selectController",method=RequestMethod.GET)
+	//@RequestMapping(value="/selectController",method=RequestMethod.GET)
 	public String selectAction(@RequestParam(name="name") String name,Model m) {
 		Test tBean = tService.select(name);
 		m.addAttribute("id",tBean.getId());
@@ -47,7 +47,7 @@ public class TestController {
 		return "result";
 	}
 	
-	@RequestMapping(value="/shopGrid.controller",method=RequestMethod.POST)
+	//@RequestMapping(value="/shopGrid.controller",method=RequestMethod.POST)
 	public @ResponseBody String selectAllAction() throws Exception {
 		List<Test> tList = tService.selectAll();
 		String uJson = objectMapper.writeValueAsString(tList);
