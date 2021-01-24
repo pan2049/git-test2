@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
 
-@Repository("testDao")
+//@Repository("testDao")
 public class TestDao {
 
 	@Autowired
